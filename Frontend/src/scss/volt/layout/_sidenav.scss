@@ -1,0 +1,842 @@
+/*
+ * Sidebar
+*/
+.sidebar {
+	display: block;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	max-height: 100%;
+	overflow-y: auto;
+	width: 100%;
+	@include transition(max-width .3s);
+	
+	@include media-breakpoint-up(md) {
+		width: 100%;
+		max-width: 260px;
+	}
+
+	.nav {
+		white-space: nowrap;
+	}
+
+	.nav-item {
+		border: $border-width solid transparent;
+		&.active {
+			& > .nav-link {
+				color: $light;
+				background-color: #2e3650;
+				border: $border-width solid lighten( $dark, 20% );
+			}
+		}
+		.nav-link {
+			color: $light;
+			border: $border-width solid $dark;
+			&:hover {
+				color: $light;
+				background-color: #2e3650;
+			}
+			&.active {
+				color: $white;
+			}
+		}
+		margin-bottom: .2rem;
+	}
+
+	.nav-link + .multi-level {
+		margin-top: .2rem;
+	}
+
+	.nav-link {
+		font-size: $font-size-base;
+		vertical-align: middle;
+		padding: 0.55rem 0.75rem;
+		@include border-radius($border-radius);
+
+		.sidebar-icon {
+			margin-right: .5rem;
+			color: $white;
+			span{
+				min-width: 22px;
+			}
+			svg{
+				min-width: 22px;
+			}
+			&.svg-icon{
+				margin-right:14px;
+			}
+		}
+
+		.link-arrow{
+			font-size: $font-size-sm;
+		}
+
+		&:focus{
+			outline: none;
+			box-shadow: 0 0 0 0.1rem rgba(#4c5680, 0.2);
+		}
+
+	}
+	.nav-link.active {
+		color: $primary;
+	}
+
+	.multi-level{
+		.nav-link{
+			padding-left: 45px;
+		}
+	}
+
+	.sidebar-text,
+	.link-arrow,
+	.badge,
+	.notification-count {
+		opacity: 1;
+		@include transition(opacity .3s);
+	}
+
+	@include media-breakpoint-up(md) {
+		.sidebar-text-contracted {
+			display: none;
+			@include transition(opacity .3s);
+		}
+	
+		&.contracted {
+			.sidebar-text,
+			.link-arrow,
+			.badge {
+				opacity: 0;
+			}
+	
+			.notification-count {
+				opacity: 1;
+				position: absolute;
+				top: 0;
+				left: 35px;
+				width: 18px;
+				height: 18px;
+				border-radius: 50%;
+				font-size: .7rem;
+				padding: .2rem;
+			}
+	
+			.nav-item {
+				position: relative;
+				width: 47px;
+				&.active {
+					& > .nav-link {
+						background-color: $primary;
+					}
+				}
+				.nav-link {
+					&:hover {
+						background-color: $primary;
+					}
+				}
+			}
+	
+			.sidebar-text-contracted {
+				display: inline;
+			}
+	
+			.multi-level .nav-link {
+				padding-left: 17px;
+			}
+	
+			.nav-item {
+				white-space: nowrap;
+			}
+	
+			.sidebar-icon {
+				text-align: center;
+			}
+	
+	
+			@include media-breakpoint-up(md) {
+				& + .content {
+					margin-left: 95px;
+					
+				}
+			}
+	
+			max-width: 95px;
+		}
+	}
+}
+
+.sidebar-inner {
+	position: relative;
+	overflow-y: hidden;
+	.accordion-button{
+		&::after {
+			background-image: none;
+			content: '\f054';
+			font-family: $font-awesome-5;
+			font-size: $font-size-sm;
+			font-weight: 900;
+			height:1.25rem;
+			width:.5rem;
+		}
+		&:not(.collapsed) {
+			background-color:#2e3650;
+			&::after{
+				transform: rotate(90deg);
+    			transition: all .2s ease;
+			}
+		}
+	}
+
+	.accordion {
+		padding-top: .25rem;
+	}
+
+	.accordion-body {
+		padding: .5rem 0 0 0;
+	}
+
+	.accordion-collapse{
+		border:0;
+	}
+}
+
+.sidebar-heading {
+	font-size: .75rem;
+	text-transform: uppercase;
+}
+
+.user-card{
+	border-bottom: 0.0625rem solid #2e3650;
+}
+
+@include media-breakpoint-down(sm) {
+	.sidebar {
+		width: 100%;
+	}
+}
+
+.content {
+
+	overflow: visible;
+	padding: 0 $spacer 0 $spacer;
+	@include transition(all .3s);
+
+	@include media-breakpoint-up(md) {
+		margin-left: 260px;
+	}
+}
+
+.sidebar-toggle {
+	font-size: 1.3rem;
+
+	&:hover,
+	&:focus {
+		outline: none;
+		box-shadow: none;
+		background: $gray-400;
+	}
+
+}
+
+.sidebar-transition-enter {
+	opacity: 0;
+}
+
+.sidebar-transition-enter-active {
+	opacity: 1;
+	transition: opacity 200ms;
+}
+
+.sidebar-transition-exit {
+	opacity: 1;
+}
+
+.sidebar-transition-exit-active {
+	opacity: 0;
+	transition: opacity 200ms;
+  }
+  .Blog-card {
+	background-color: white;
+	color: #272727;
+	padding: 20px;
+	border-radius: 10px;
+	border: 0px;
+	border-color: tomato;
+	border-style: solid;
+	transition: 200ms;
+    max-width: 380px;
+}
+
+
+
+.Blog-card-header {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+
+}
+
+.Blog-profile {
+	width: 2.5rem;
+	height: 2.5rem;
+	background-color: tomato;
+	border-radius: 50%;
+	margin: 10px;
+	font-size: 20pt;
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	justify-content: center;
+}
+
+.letter {
+	vertical-align: middle;
+}
+
+.Blog-card-title-group {
+	justify-content: center;
+}
+
+.Blog-card-title {
+	flex: 0.5;
+	font-size: large;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+.Blog-card-date {
+	flex: 0.3;
+	font-size: small;
+	margin-top: 0;
+}
+
+.Blog-card-image {
+	border-radius: 10px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	height: 200px;
+	width: 100%;
+	object-fit: cover;
+}
+.Blog-card-like-icon {
+	height: 25px;
+}
+.Blog-card-text {
+	font-size: medium;
+	display: -webkit-box;
+	-webkit-line-clamp: 3; /* Limit text to 3 lines */
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis; /* Add ellipsis at the end */
+  }
+
+.Blog-card-like-bar {
+	display: flex;
+	align-items: center;
+	margin-top: 20px;
+	justify-content: space-between;
+}
+
+.Blog-like-text {
+	font-size: small;
+	margin-left: 10px;
+}
+.Blog-Detail-card{
+	background-color: white;
+	color: #272727;
+	padding: 20px;
+	border-radius: 10px;
+	border: 0px;
+	border-color: tomato;
+	border-style: solid;
+	transition: 200ms;
+
+}
+.Blog-Detail-Image {
+	position: relative;
+	border-radius: 12px;
+	overflow: hidden;
+  }
+  
+  .Blog-Detail-Image img {
+	width: 100%;
+	height: auto;
+	display: block;
+	border-radius: 12px;
+  }
+  
+  .Blog-Detail-Like {
+	position: absolute;
+	bottom: 16px;
+	left: 16px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	background-color: rgba(255, 255, 255, 0.8);
+	padding: 8px 16px;
+	border-radius: 20px;
+  }
+  
+  .Blog-Detail-Like img {
+	width: 20px;
+	height: 20px;
+  }
+  
+  .Blog-Detail-Like span {
+	font-size: 14px;
+	color: #333;
+  }
+  
+  .Blog-Detail-Content {
+	padding: 16px;
+  }
+  
+ /* Avatar before the title */
+.Blog-Detail-Title-Avatar {
+	width: 50px;
+	height: 50px;
+	background-color: #007bff; /* Avatar background color */
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white; /* Text color for the initial */
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 16px; /* Space between avatar and title */
+  }
+  
+  .Blog-Detail-Title {
+	display: flex;
+	align-items: center;
+	gap: 16px; /* Space between avatar and title */
+	font-size: 32px;
+	font-weight: 700;
+	color: #333;
+	margin-bottom: 16px;
+  }
+  
+  .Blog-Detail-Meta {
+	display: flex;
+	gap: 16px;
+	margin-bottom: 16px;
+	font-size: 14px;
+	color: #333;
+  }
+  
+  .Blog-Detail-Date,
+  .Blog-Detail-Category {
+	display: flex;
+	align-items: center;
+  }
+  
+  /* Description Section */
+  .Blog-Detail-Description-Section {
+	margin-top: 24px;
+	padding: 16px;
+	background-color: #ffff;
+	border-radius: 12px;
+  }
+  
+  .Blog-Detail-Description-Heading {
+	font-size: 24px;
+	font-weight: 600;
+	color: #333;
+	margin-bottom: 8px;
+  }
+  
+  .Blog-Detail-Description-Text {
+	font-size: 16px;
+	line-height: 1.8;
+	color: #333;
+	margin: 0;
+  }
+  
+  /* Comments Section */
+  .Blog-Detail-Comments {
+	margin-top: 32px;
+  }
+  
+  .Blog-Detail-Comments h3 {
+	font-size: 24px;
+	font-weight: 600;
+	color: #333;
+	margin-bottom: 16px;
+  }
+  
+  .Blog-Detail-Comment {
+	background-color: #fff;
+	padding: 16px;
+	border-radius: 8px;
+	margin-bottom: 16px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Blog-Detail-Comment strong {
+	font-size: 16px;
+	color: #333;
+	display: block;
+	margin-bottom: 8px;
+  }
+  
+  .Blog-Detail-Comment p {
+	font-size: 14px;
+	color: #333;
+	margin: 0;
+  }
+  
+  /* Form Styles */
+  .Blog-Detail-Comments .form-control {
+	border-radius: 8px;
+	border: 1px solid #8f8e8e;
+	padding: 12px;
+	font-size: 14px;
+  }
+  
+  .Blog-Detail-Comments .btn-primary {
+	
+	border: none;
+	padding: 10px 20px;
+	font-size: 14px;
+	border-radius: 8px;
+	margin-top: 16px;
+  }
+  /* Comment Author Avatar Styles */
+.Blog-Detail-Comment-Author {
+	display: flex;
+	// align-items: center;
+	gap: 12px;
+	margin-bottom: 8px;
+  }
+  
+  .Blog-Detail-Comment-Avatar {
+	width: 32px;
+	height: 32px;
+	background-color: #007bff; /* Avatar background color */
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white; /* Text color for the initial */
+	font-size: 14px;
+	font-weight: bold;
+  }
+  /* Rating Stars */
+.Blog-Detail-Rating {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 16px;
+  }
+  
+  .Blog-Detail-Rating span {
+	font-size: 14px;
+	color: #777;
+  }
+  
+  /* Views Count */
+  .Blog-Detail-Views {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 16px;
+	font-size: 14px;
+	color: #777;
+  }
+  
+  /* Preparation Time */
+  .Blog-Detail-PrepTime {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 16px;
+	font-size: 14px;
+	color: #777;
+  }
+  
+  /* Difficulty Level */
+  .Blog-Detail-Difficulty {
+	margin-bottom: 16px;
+	font-size: 14px;
+	color: #777;
+  }
+  
+  /* Author Information */
+  .Blog-Detail-Author {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 16px;
+  }
+  
+  .Blog-Detail-Author-Avatar {
+	width: 40px;
+	height: 40px;
+	background-color: #007bff;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+  }
+  
+  .Blog-Detail-Author-Info strong {
+	font-size: 16px;
+	color: #333;
+  }
+  
+  .Blog-Detail-Author-Info p {
+	font-size: 14px;
+	color: #777;
+	margin: 0;
+  }
+  
+  /* Tags */
+  .Blog-Detail-Tags {
+	margin-bottom: 16px;
+  }
+  
+
+  .Blog-Detail-Tags-save{
+display: flex;
+justify-content: space-between;
+  }
+  /* User List Styles */
+.User-List {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 16px;
+  }
+  
+  .User-Item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px;
+	background-color: #fff;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+  }
+  
+  .User-Item:hover {
+	background-color: #e9e9e9;
+  }
+  
+  .User-Avatar {
+	width: 40px;
+	height: 40px;
+	background-color: #007bff;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+  }
+  
+  .User-Name {
+	font-size: 16px;
+	font-weight: 600;
+	color: #333;
+  }
+  
+  .User-LastMessage {
+	font-size: 14px;
+	color: #777;
+  }
+  
+  /* Chat Box Styles */
+  .Chat-Box {
+	display: flex;
+	flex-direction: column;
+	height: 90vh;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	overflow: hidden;
+  }
+  
+  .Chat-Header {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px;
+	background-color: #f9f9f9;
+	border-bottom: 1px solid #ddd;
+  }
+  
+  .Back-Button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 18px;
+	color: #333;
+  }
+  
+
+  /* Custom Scrollbar Styles */
+  .Chat-Messages::-webkit-scrollbar {
+	width: 6px; /* Thin scrollbar width */
+  }
+  
+  .Chat-Messages::-webkit-scrollbar-track {
+	background: #f1f1f1; /* Light gray track */
+	border-radius: 3px; /* Rounded corners */
+  }
+  
+  .Chat-Messages::-webkit-scrollbar-thumb {
+	background: #888; /* Dark gray thumb */
+	border-radius: 3px; /* Rounded corners */
+  }
+  
+  .Chat-Messages::-webkit-scrollbar-thumb:hover {
+	background: #555; /* Darker gray on hover */
+  }
+ /* Chat Messages Container */
+/* Chat Messages Container */
+.Chat-Messages {
+	flex: 1;
+	padding: 16px;
+	overflow-y: auto;
+	background-color: #e9e9e9;
+	display: flex;
+	flex-direction: column;
+	gap: 12px; /* Space between messages */
+  }
+  
+  /* Message Base Styles */
+  .Message {
+	padding: 8px 12px;
+	// border-radius: 8px;
+	margin-bottom: 8px;
+	max-width: 70%; /* Limit message width */
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+	gap: 8px; /* Space between avatar and message */
+  }
+  
+  /* Sent Message Styles */
+  .Message.Sent {
+	background-color: #007bff;
+	color: white;
+	align-self: flex-end; /* Align to the right */
+	margin-left: auto; /* Push to the right edge */
+  }
+  
+  /* Received Message Styles */
+  .Message.Received {
+	background-color: #fff;
+	color: #333;
+	align-self: flex-start; /* Align to the left */
+	margin-right: auto; /* Push to the left edge */
+  }
+  
+  /* Avatar Styles */
+  .Message-Avatar {
+	width: 24px;
+	height: 24px;
+	background-color: #007bff;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+	flex-shrink: 0; /* Prevent avatar from shrinking */
+  }
+  
+  /* Hide Avatar for Sent Messages */
+  .Message.Sent .Message-Avatar {
+	display: none;
+  }
+  /* Sent Message Corner */
+.Message.Sent::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: -8px;
+	width: 0;
+	height: 0;
+	border-top: 8px solid #007bff;
+	border-right: 8px solid transparent;
+  }
+  
+  /* Received Message Corner */
+  .Message.Received::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -8px;
+	width: 0;
+	height: 0;
+	border-top: 8px solid #fff;
+	border-left: 8px solid transparent;
+  }
+  .Chat-Input {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px;
+	background-color: #f9f9f9;
+	border-top: 1px solid #ddd;
+  }
+  
+  .Chat-Input textarea {
+	flex: 1;
+	padding: 8px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	resize: none;
+  }
+  
+  .Send-Button {
+	background-color: #007bff;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 8px;
+	color: white;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+  }
+  
+  .Send-Button:hover {
+	background-color: #0056b3;
+  }
+ /* Custom CSS for Friends Page */
+.friends-tab-content {
+	margin-top: 20px;
+  }
+  
+  .friends-tab-content .card {
+	border: none;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .friends-tab-content .card-body {
+	padding: 20px;
+  }
+  
+  .friends-tab-content .btn {
+	font-size: 14px;
+	padding: 5px 10px;
+  }
+  .slick-prev:before, .slick-next:before {
+	color: #272727 !important;
+  }
+  .slick-prev{
+	left: -17px !important;
+  }
+  .slick-next{
+	right: -17px !important;
+  }
+  .slick-dots{
+	bottom: -21px !important;
+  }
